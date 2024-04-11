@@ -63,5 +63,13 @@ public class GameTest {
         assertEquals(24, game.score());
     }
 
-
+    @Test
+    void test_cas_general() {
+        int[] lancers = {1, 2, 10, 0, 10, 4, 2, 0, 10, 6, 2, 0, 10, 6, 4, 8, 2, 2, 7};
+        for (int pins : lancers) {
+            game.roll(pins);
+        }
+        assertEquals(122, game.score());
+    }
+    
 }
