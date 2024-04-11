@@ -40,4 +40,16 @@ public class GameTest {
         }
         assertEquals(30, game.score());
     }
+    
+    @Test
+    void test_spare() {
+        game.roll(7);
+        game.roll(3);
+        game.roll(4);
+        for (int i = 0; i < 17; i++) {
+            game.roll(0);
+        }
+        assertEquals(18, game.score()); // 7+3+4(bonus pour spare)+4 = 18
+    }
+
 }
