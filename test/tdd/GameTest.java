@@ -54,7 +54,7 @@ public class GameTest {
     
     @Test
     void test_strike() {
-        game.roll(10); //Strike
+        game.roll(10); //Strike (10)
         game.roll(3);
         game.roll(4);
         for (int i = 0; i < 16; i++) {
