@@ -5,15 +5,18 @@ public class Game {
     private int[] rolls = new int[21];
     private int currentRoll = 0;
 
-    void roll(int pins) {
+    public void roll(int pins) {
         rolls[currentRoll++] = pins;
     }
 
-    int score() {
+    public int score() {
         int score = 0;
         int frameIndex = 0;
         for (int frame = 0; frame < 10; frame++) {
-            if (isSpare(frameIndex)) {
+            if (isStrike(frameIndex)) {
+                score += 10 + strikeBonus(frameIndex);
+                frameIndex++;
+            } else if (isSpare(frameIndex)) {
                 score += 10 + spareBonus(frameIndex);
                 frameIndex += 2;
             } else {
@@ -22,6 +25,14 @@ public class Game {
             }
         }
         return score;
+    }
+
+    private boolean isStrike(int frameIndex) {
+        return rolls[frameIndex] == 10;
+    }
+
+    private int strikeBonus(int frameIndex) {
+        return rolls[frameIndex + 1] + rolls[frameIndex + 2];
     }
 
     private boolean isSpare(int frameIndex) {
